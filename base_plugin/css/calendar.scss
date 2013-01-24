@@ -1,0 +1,136 @@
+/* =Calendar
+-----------------------------------------------------------------------------*/
+
+#cal {
+  width: 875px;
+  overflow: hidden;
+  margin: 20px auto 0px auto;
+  a {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0px 0px 5px 2px;
+    &:hover {
+      color: #000;
+      text-decoration: none;
+    }
+  }
+  .header {
+    width: 876px;
+    margin: 0px auto 0px auto;
+    height: 85px;
+    background: url(../../../themes/bellaterre/images/cal-header-bg.png) repeat-x;
+  }
+}
+
+.arrowleft {
+  float: left;
+  width: 50px;
+  height: 70px;
+  background: url(../../../themes/bellaterre/images/arrow-left.png) no-repeat;
+  background-position: top;
+  cursor: pointer;
+  &:hover {
+    background-position: bottom;
+  }
+}
+
+.month {
+  text-transform: uppercase;
+  margin-left: auto;
+  margin-right: auto;
+  width: 778px;
+  height: 48px;
+  font-size: 24px;
+  color: #000000;
+  font-weight: bold;
+  text-align: center;
+  z-index: 100;
+  margin-top: -61px;
+}
+
+.arrowright {
+  float: right;
+  width: 50px;
+  height: 70px;
+  background: url(../../../themes/bellaterre/images/arrow-right.png) no-repeat;
+  background-position: top;
+  cursor: pointer;
+  &:hover {
+    background-position: bottom;
+  }
+}
+
+.weekDayWrapper {
+  margin: 0px auto 0px auto;
+  overflow: hidden;
+  width: 100%;
+}
+
+.weekDay {
+  float: left;
+  width: 123px;
+  height: 17px;
+  border-left: 1px solid #d6c19a;
+  border-top: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #FFFFFF;
+  background: #d6c19a;
+  text-align: center;
+  color: #000000;
+  font-weight: bold;
+  padding: 8px 0px 5px 0px;
+}
+
+.weekDayLast {
+  float: left;
+  width: 124px;
+  height: 17px;
+  border-top: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #FFFFFF;
+  background: #d6c19a;
+  text-align: center;
+  color: #000000;
+  font-weight: bold;
+  padding: 8px 0px 5px 0px;
+}
+
+.weekDayFirst {
+  float: left;
+  width: 124px;
+  height: 17px;
+  border-left: 1px solid #d6c19a;
+  border-top: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #FFFFFF;
+  background: #d6c19a;
+  text-align: center;
+  color: #000000;
+  font-weight: bold;
+  padding: 8px 0px 5px 0px;
+}
+
+.day, .dayOn {
+  width: 123px;
+  border: 1px solid #e3e1e1;
+  height: 128px;
+  float: left;
+  background: url(../../../themes/bellaterre/images/cal-day-bg.png) repeat-x;
+  text-align: left;
+}
+
+.dayNumber {
+  float: left;
+  padding: 5px 10px 3px 10px;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: bold;
+  clear: both;
+  a {
+    color: #FFFFFF;
+    text-decoration: none;
+    border-bottom: 1px solid #3c3931;
+  }
+}

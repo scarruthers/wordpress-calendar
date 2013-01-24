@@ -1,0 +1,81 @@
+#wpc_msg {
+	margin:10px auto;
+	border:1px dashed gray;
+	width:90%;
+	text-align:center;
+}
+/* =Tooltips
+ -----------------------------------------------------------------------------*/
+/* For adding an event */
+.tooltip {
+	color:#000000;
+	display:none;
+	background:#FFFFFF;
+	z-index:99;
+	padding:20px;
+	border:2px solid #000000;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	behavior:url(pie.htc);
+	position:relative;
+	min-width:200px !important;
+	min-height:80px !important;
+	margin:0px !important;
+}
+a.add_event {
+	cursor:pointer;
+	margin-left:4px;
+	padding:1px;
+	color:#000000 !important;
+}
+/* For editing / viewing an event */
+.day {
+	width :123px;
+	border:1px solid #e3e1e1;
+	height:128px;
+	float:left;
+	background:#FFFFFF;
+	text-align:left
+}
+.dayOn {
+	width:124px;
+	border:1px solid #e3e1e1;
+	height:128px;
+	float:left;
+	background:#FFFFFF;
+	text-align:left
+}
+.tooltip_event {
+	color:#000000;
+	display:none;
+	background:#FFFFFF;
+	z-index:99;
+	padding:20px;
+	border:2px solid #000000;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	behavior:url(pie.htc);
+	position:relative;
+	min-width:200px !important;
+	min-height:80px !important;
+	margin:0px !important;
+}
+.te {
+	position:relative;
+}
+.tooltip_event h2 {
+	font-size:16px;
+	font-weight:bold;
+	padding:0;
+	margin:0;
+	width:95%;
+	color:#000000
+}
+.dayNumber {
+	color:#000;
+}
+#cal {
+	margin-top:60px;
+}
