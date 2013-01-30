@@ -14,7 +14,17 @@ require_once(WPC_PATH . 'config.php');
 
 // wpcBackend() displays the calendar to edit and add events
 function wpcBackend() {
-	require_once(WPC_PATH . 'backend.php');
+    // Perform event updates
+    $event_manager = new Event_Manager;
+
+    if($event_manager->hasMessage()) {
+        echo $event_manager->getMessage();
+    }
+
+    // Output calendar
+    $calendar = new Calendar;
+
+    echo $calendar->returnCalendar();
 }
 
 // wpcTypes() allows the user to add/edit/remove event types
