@@ -1,2 +1,2 @@
-wordpress_calendar
+wordpress-calendar
 ==================

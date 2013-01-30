@@ -2,12 +2,12 @@ jQuery(document).ready(function() {
 
 	$('.add_event').tooltip({
 		delay: 1000,
-		events: { def: 'click,blur' }	
+		events: { def: 'click,blur' }
 	});
 	$('.view_event').tooltip({
 		delay: 30
 	});
-	
+
 	var currentPosition = 0;
 	var slideWidth = 911;
 	var slides = $('.slide');
@@ -15,6 +15,7 @@ jQuery(document).ready(function() {
 
 	// Wrap all .slides with #slideInner div slides
 	slides.wrapAll("<div id='slideInner'></div>")
+
 	// Float left to display horizontally, readjust .slides width
 	.css({
 		'float' : 'left',
@@ -39,6 +40,7 @@ jQuery(document).ready(function() {
 			'marginLeft' : slideWidth * (-currentPosition)
 		});
 	});
+
 	// manageControls: Hides and Shows controls depending on currentPosition
 	function manageControls(position) {
 		// Hide left arrow if position is first slide
@@ -54,5 +56,4 @@ jQuery(document).ready(function() {
 			$('#rightControl').show()
 		}
 	}
-
 });
