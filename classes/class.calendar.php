@@ -6,7 +6,7 @@ class Calendar {
 	private $start_month;
 	private $start_year;
 	private $num_months;
-	private $tooltip;
+	private $overlay;
 	private $wpdb;
 
 	public function __construct() {
@@ -15,7 +15,7 @@ class Calendar {
 		$this->month_names = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 
 		$this->setDateData();
-		$this->tooltip = new Tooltip;
+		$this->overlay = new Overlay;
 	}
 
 	public function returnCalendar() {
@@ -100,26 +100,31 @@ class Calendar {
 		$sql = "SELECT * FROM " . WPC_DB . " WHERE event_start_date = '" . $mysql_date . "'";
 		$events = $this->wpdb->get_results($sql);
 		$new_timestamp = strtotime($this->month_names[$current_month-1] . " " . $current_day . ", " . $current_year);
-		if($this->wpdb->num_rows > 0) {
+		if(count($events) > 0) {
 			// Display event data
 			$day = "<div class='dayOn'><div class='dayNumber'>" . $current_day . "</div>";
 			foreach($events as $event) {
 				$event = array_map("stripslashes", $event);
-				$day .= "<div class='tooltipContainer colorClassGoesHere'><a class='view_event'>{$event->event_title}</a></div><div class='tooltip_event'>";
-
+				$event_id = $new_timestamp . "-" . $event->id;
+				$day .= "<div class='overlayContainer colorClassGoesHere'><a class='view_event' rel='#{$event_id}'>{$event->event_title}</a></div><div class='modal' id='{$event_id}'>";
+				
+				// Event Details Overlay
 				if(is_admin()) {
-					$day .= $this->tooltip->returnEditableTooltip($new_timestamp, false, $event);
-					$day .= $this->tooltip->returnEditableTooltip($new_timestamp, true);
+					$day .= $this->overlay->returnEditableOverlay($new_timestamp, false, $event);
 				} else {
-					$day .= $this->tooltip->returnNonEditableTooltip($event);
+					$day .= $this->overlay->returnNonEditableOverlay($event);
 				}
 
-				$day .= "</div><!--tooltip_event-->";
+				$day .= "</div><!--modal-->";
+			}
+			if(is_admin()) {
+				// 'Add Event' Overlay
+				$day .= $this->overlay->returnEditableOverlay($new_timestamp, true);
 			}
 			$day .= "</div><!--dayOn-->";
 		} else {
 			// Display empty day
-			$day = "<div class='day'><div class='dayNumber'>$current_day</div> " . (is_admin() ? $this->tooltip->returnEditableTooltip($new_timestamp, true) : "") . "</div>";
+			$day = "<div class='day'><div class='dayNumber'>$current_day</div> " . (is_admin() ? $this->overlay->returnEditableOverlay($new_timestamp, true) : "") . "</div>";
 		}
 
         return $day;

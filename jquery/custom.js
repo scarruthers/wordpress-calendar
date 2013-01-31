@@ -1,11 +1,17 @@
 jQuery(document).ready(function() {
 
-	$('.add_event').tooltip({
-		delay: 1000,
-		events: { def: 'click,blur' }
-	});
-	$('.view_event').tooltip({
-		delay: 30
+	$(".add_event, .view_event").overlay({
+		// some mask tweaks suitable for modal dialogs
+		mask : {
+			color : '#ebecff',
+			loadSpeed : 200,
+			opacity : 0.9,
+			left : 'center',
+			top : 'center',
+			fixed : true
+		},
+
+		closeOnClick : false
 	});
 
 	var currentPosition = 0;
@@ -44,16 +50,17 @@ jQuery(document).ready(function() {
 	// manageControls: Hides and Shows controls depending on currentPosition
 	function manageControls(position) {
 		// Hide left arrow if position is first slide
-		if(position == 0) {
+		if (position == 0) {
 			$('#leftControl').hide()
 		} else {
 			$('#leftControl').show()
 		}
 		// Hide right arrow if position is last slide
-		if(position == numberOfSlides - 1) {
+		if (position == numberOfSlides - 1) {
 			$('#rightControl').hide()
 		} else {
 			$('#rightControl').show()
 		}
 	}
+
 });

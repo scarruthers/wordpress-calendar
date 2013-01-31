@@ -11,7 +11,7 @@ DEFINE('WPC_DISPLAY_NAME', "WP Calendar");
 require_once(WPC_PATH . 'install.php');
 
 require_once(WPC_PATH . 'classes/class.calendar.php');
-require_once(WPC_PATH . 'classes/class.tooltip.php');
+require_once(WPC_PATH . 'classes/class.overlay.php');
 require_once(WPC_PATH . 'classes/class.event_types.php');
 require_once(WPC_PATH . 'classes/class.event_manager.php');
 

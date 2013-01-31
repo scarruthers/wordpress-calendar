@@ -15,8 +15,8 @@ require_once(WPC_PATH . 'config.php');
 // wpcBackend() displays the calendar to edit and add events
 function wpcBackend() {
     // Perform event updates and output any message(s)
-    $event_manager = new Event_Manager;
-    $calendar = new Calendar;
+    $event_manager	= new Event_Manager;
+    $calendar		= new Calendar;
 
     echo $event_manager->getMessage();
     echo $calendar->returnCalendar();
@@ -43,9 +43,9 @@ function wpcCreateMenu() {
 // Manage what stylesheets need to be loaded
 function wpcAddStylesheets($stylesheets) {
 	if(is_admin()) {
-		$stylesheets = array("css/calendar.css", "css/backend_style.css", "css/jqueryui-dark-hive/jquery-ui-1.8.16.custom.css");
+		$stylesheets = array("css/style.css", "css/jqueryui-dark-hive/jquery-ui-1.8.16.custom.css");
 	} else {
-		$stylesheets = array("css/calendar.css", "css/frontend_style.css");
+		$stylesheets = array("css/style.css");
 	}
 	$n = 0;
 	foreach ($stylesheets as $stylesheet) {
@@ -65,11 +65,13 @@ function wpcAddScripts() {
 
 	// Register scripts
 	wp_register_script('jquery',       WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/jquery-1.9.0.min.js');
+	wp_register_script('jquerymigrate', WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/jquery.migrate.js');
 	wp_register_script('jquerytools',  WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/jquery.tools.custom.min.js');
     wp_register_script('wpc_customjs',  WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/custom.js');
 
 	// Enqueue the scripts
 	wp_enqueue_script('jquery');
+	wp_enqueue_script('jquerymigrate');
 	wp_enqueue_script('jquerytools');
 	wp_enqueue_script('wpc_customjs');
 }
