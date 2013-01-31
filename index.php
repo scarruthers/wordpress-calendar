@@ -16,10 +16,9 @@ require_once(WPC_PATH . 'config.php');
 function wpcBackend() {
     // Perform event updates and output any message(s)
     $event_manager = new Event_Manager;
-    echo $event_manager->getMessage();
-
-    // Output calendar
     $calendar = new Calendar;
+
+    echo $event_manager->getMessage();
     echo $calendar->returnCalendar();
 }
 

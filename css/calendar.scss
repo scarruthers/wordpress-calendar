@@ -19,7 +19,7 @@
     width: 876px;
     margin: 0px auto 0px auto;
     height: 85px;
-    background: url(../../../themes/bellaterre/images/cal-header-bg.png) repeat-x;
+    background: url(../images/cal-header-bg.png) repeat-x;
   }
 }
 
@@ -27,7 +27,7 @@
   float: left;
   width: 50px;
   height: 70px;
-  background: url(../../../themes/bellaterre/images/arrow-left.png) no-repeat;
+  background: url(../images/arrow-left.png) no-repeat;
   background-position: top;
   cursor: pointer;
   &:hover {
@@ -53,7 +53,7 @@
   float: right;
   width: 50px;
   height: 70px;
-  background: url(../../../themes/bellaterre/images/arrow-right.png) no-repeat;
+  background: url(../images/arrow-right.png) no-repeat;
   background-position: top;
   cursor: pointer;
   &:hover {
@@ -116,7 +116,7 @@
   border: 1px solid #e3e1e1;
   height: 128px;
   float: left;
-  background: url(../../../themes/bellaterre/images/cal-day-bg.png) repeat-x;
+  background: url(../images/cal-day-bg.png) repeat-x;
   text-align: left;
 }
 
