@@ -71,6 +71,5 @@ class Overlay {
 
 		return $overlay;
 	}
-
 }
 ?>
