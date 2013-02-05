@@ -46,6 +46,27 @@
   text-align:center;
 }
 
+form#event_types {
+  .formRow {
+    margin-bottom: 7px;
+    padding-left: 20px;
+    h3 {
+      margin-left:-10px;
+    }
+    label {
+      display: inline-block;
+      padding-left: 15px;
+      input {
+        width: 150px;
+
+      }
+    }
+  }
+  .verticalSpace {
+    padding-top: 20px;
+  }
+}
+
 /* =Calendar
 -----------------------------------------------------------------------------*/
 

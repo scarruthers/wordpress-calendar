@@ -7,6 +7,7 @@
  License: Attribution-NonCommercial-ShareAlike 3.0 Unported
 (http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode)
 */
+
 DEFINE('WPC_PATH', dirname( __FILE__ ) . '/');
 
 require_once(WPC_PATH . 'config.php');
@@ -15,6 +16,11 @@ require_once(WPC_PATH . 'config.php');
 // wpcBackend() displays the calendar to edit and add events
 function wpcBackend() {
     // Perform event updates and output any message(s)
+    require_once(WPC_PATH . 'classes/class.overlay.php');
+    require_once(WPC_PATH . 'classes/events/class.event_manager.php');
+	require_once(WPC_PATH . 'classes/event_types/class.event_type.php');
+	require_once(WPC_PATH . 'classes/event_types/class.event_types.php');
+	
     $event_manager	= new Event_Manager;
     $calendar		= new Calendar;
 
@@ -24,6 +30,12 @@ function wpcBackend() {
 
 // wpcTypes() allows the user to add/edit/remove event types
 function wpcTypes() {
+	require_once(WPC_PATH . 'classes/event_types/class.event_manager.php');
+	require_once(WPC_PATH . 'classes/event_types/class.event_type.php');
+	require_once(WPC_PATH . 'classes/event_types/class.event_types.php');	
+	
+	$event_manager = new Event_Manager;
+	
 	require_once(WPC_PATH . 'types.php');
 }
 
@@ -67,13 +79,15 @@ function wpcAddScripts() {
 	wp_register_script('jquery',       WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/jquery-1.9.0.min.js');
 	wp_register_script('jquerymigrate', WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/jquery.migrate.js');
 	wp_register_script('jquerytools',  WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/jquery.tools.custom.min.js');
-    wp_register_script('wpc_customjs',  WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/custom.js');
+    wp_register_script('wpc_calendarjs',  WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/calendar.js');
+	wp_register_script('wpc_eventjs', WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/event_types.js');
 
 	// Enqueue the scripts
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('jquerymigrate');
 	wp_enqueue_script('jquerytools');
-	wp_enqueue_script('wpc_customjs');
+	wp_enqueue_script('wpc_calendarjs');
+	wp_enqueue_script('wpc_eventjs');
 }
 
 // Actions, Filters, Hooks
