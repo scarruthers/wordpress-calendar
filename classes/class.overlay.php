@@ -33,7 +33,7 @@ class Overlay {
 			$overlay .= "<h3>Add Event on " . date("n/j/Y", $timestamp) . "</h3><br />";
 
             // Create a filler event to prevent object access errors
-            $event = (object) array("id" => "", "event_type" => "", "event_title" => "", "event_description" => "", "event_start_time" => "");
+            $event = (object) array("id" => "", "event_type" => "", "event_title" => "", "event_description" => "", "event_location" => "", "event_start_time" => "", "event_end_time" => "", "event_start_date" => "", "event_end_date" => "");
 		} else {
 			$identifier = $timestamp . "_" . $event->id;
 			$action = "edit";
@@ -44,19 +44,35 @@ class Overlay {
 						<input type='hidden' name='event_timestamp' value='{$timestamp}' />
 						<input type='hidden' name='{$action}_event' value='{$event->id}' />
 						<div class='labelDiv'>
-							<label>Event type:</label>" . $this->event_types->getEventTypeSelect('event_type', $identifier, $event->event_type) . "
-						</div>
-						<div class='labelDiv'>
 							<label>Title:</label>
 							<input type='text' name='event_title' value='{$event->event_title}' />
 						</div>
+						
 						<div class='labelDiv'>
-							<label>Time:</label>
-							<input type='text' name='cc_time' value='{$event->event_start_time}' size='8' />
+							<label>Type:</label>" . $this->event_types->getEventTypeSelect('event_type', $identifier, $event->event_type) . "
 						</div>
+
+						<div class='labelDiv'>
+							<label>Location:</label>
+							<input type='text' name='event_location' value='{$event->event_location}' />
+						</div>
+						
+						<div class='labelDiv'>
+							<label>Start Date / Time:</label>
+							<input type='text' name='event_start_date' value='{$event->event_start_date}' /> / 
+							<input type='text' name='event_start_time' value='{$event->event_start_time}' />
+						</div>
+						
+						<div class='labelDiv'>
+							<label>End Date / Time:</label>
+							<input type='text' name='event_end_date' value='{$event->event_end_date}' /> / 
+							<input type='text' name='event_end_time' value='{$event->event_end_time}' />
+						</div>
+						
 						<div class='labelDiv'>
 							<label>Description:</label>
-							<textarea name='event_description'>{$event->event_description}</textarea>
+							<br />
+							<textarea name='event_description' rows='5' cols='40'>{$event->event_description}</textarea>
 						</div>
 
 						<input type='submit' onclick='javascript: jQuery(\"#{$long_name}\").submit();' name='submit_form' value='Update' style='float: left;' />" .

@@ -2,8 +2,8 @@
 
 class Event_Manager {
     private $wpdb;
-    private $message;
     private $fields;
+	private $msg;
 
     public function __construct() {
         global $wpdb;
@@ -22,13 +22,13 @@ class Event_Manager {
         }
     }
 
-    public function hasMessage() {
-        return !is_null($this->message);
+    private function hasMessage() {
+        return !is_null($this->msg);
     }
 
     public function getMessage() {
         if ($this->hasMessage()) {
-            return "<div id='wpc_msg'>" . $this->message . "</div>";
+			return "<div id='wpc_msg'>" . $this->msg . "</div>";
         }
     }
 
@@ -45,7 +45,6 @@ class Event_Manager {
         } else {
             $msg = "Due to an error, the event was not added.";
         }
-
         $this->msg = $msg;
     }
 

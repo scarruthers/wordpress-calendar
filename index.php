@@ -24,6 +24,7 @@ function wpcBackend() {
     $event_manager	= new Event_Manager;
     $calendar		= new Calendar;
 
+	//echo "<pre>";var_dump($event_manager);echo "</pre>";
     echo $event_manager->getMessage();
     echo $calendar->returnCalendar();
 }
