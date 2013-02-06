@@ -33,10 +33,13 @@ class Overlay {
 			$overlay .= "<h3>Add Event on " . date("n/j/Y", $timestamp) . "</h3><br />";
 
             // Create a filler event to prevent object access errors
-            $event = (object) array("id" => "", "event_type" => "", "event_title" => "", "event_description" => "", "event_location" => "", "event_start_time" => "", "event_end_time" => "", "event_start_date" => "", "event_end_date" => "");
+            $event = (object) array("id" => "", "event_type" => "", "event_title" => "", "event_description" => "", "event_location" => "", "event_start_time" => "", "event_end_time" => "", "event_start_date" => date("Y-m-d", $timestamp), "event_end_date" => "");
 		} else {
 			$identifier = $timestamp . "_" . $event->id;
 			$action = "edit";
+			
+			$overlay .= "<div class='modal' id='{$identifier}'>";
+			$overlay .= "<h3>Edit Event on " . date("n/j/Y", $timestamp) . "</h3><br />";
 		}
 		$long_name = "{$action}_cal_event_{$identifier}";
 
@@ -58,15 +61,15 @@ class Overlay {
 						</div>
 						
 						<div class='labelDiv'>
-							<label>Start Date / Time:</label>
-							<input type='text' name='event_start_date' value='{$event->event_start_date}' /> / 
-							<input type='text' name='event_start_time' value='{$event->event_start_time}' />
+							<label>Start Date and Time:</label>
+							<input type='text' name='event_start_date' class='datepicker' value='{$event->event_start_date}' size='10' />
+							<input type='text' name='event_start_time' class='timepicker' value='{$event->event_start_time}' size='5' />
 						</div>
 						
 						<div class='labelDiv'>
-							<label>End Date / Time:</label>
-							<input type='text' name='event_end_date' value='{$event->event_end_date}' /> / 
-							<input type='text' name='event_end_time' value='{$event->event_end_time}' />
+							<label>End Date and Time:</label>
+							<input type='text' name='event_end_date' class='datepicker' value='" . ($event->event_end_date == "0000-00-00" ? "" : $event->event_end_date) . "' size='10' />
+							<input type='text' name='event_end_time' class='timepicker' value='{$event->event_end_time}' size='5' />
 						</div>
 						
 						<div class='labelDiv'>
@@ -76,12 +79,11 @@ class Overlay {
 						</div>
 
 						<input type='submit' onclick='javascript: jQuery(\"#{$long_name}\").submit();' name='submit_form' value='Update' style='float: left;' />" .
-						($new_event ? "" : "<input type='button' name='delete_event' value='Delete' onclick='window.location.replace(\"" . site_url() . "/wp-admin/admin.php?page=cc-main&delete={$event->id}\")' style='float: left;' />") .
-						"</form>";
+						($new_event ? "" : "<input type='button' name='delete_event' value='Delete' onclick='window.location.replace(\"" . site_url() . "/wp-admin/admin.php?page=wpc-main&delete={$event->id}\")' style='float: left;' />") .
+						"<a class='cancel_overlay close'> X </a>
+						</form>";
 
-		if ($new_event == true) {
-			$overlay .= "</div>";
-		}
+		$overlay .= "</div>";
 
 		self::$num_overlays++;
 

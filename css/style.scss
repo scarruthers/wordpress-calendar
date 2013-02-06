@@ -18,9 +18,10 @@
   
   h3 {
     margin:0px;
-    padding:2px 0 10px 45px;
+    padding: 10px 0 10px 0;
     border-bottom:1px solid #333;
     font-size:20px;
+    text-align: center;
   }  
   
   form {
@@ -29,13 +30,29 @@
       vertical-align: top;
       label {
         vertical-align: top;
-        width: 100px;
+        width: 125px;
         display: inline-block;
       }        
       input {
         display: inline;
       }
+      select {
+        padding-left: 4px;
+        display: inline;
+      }
     }
+    .cancel_overlay {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 5px;
+      border-left: 1px solid black;
+      border-bottom: 1px solid black;
+      cursor: pointer;
+      float: right;
+    }
+    
   }
 }
  
@@ -194,10 +211,16 @@ form#event_types {
             left: 0;
             margin-bottom: 1px;
             cursor:pointer;
-            margin-left:4px;
+            margin-left:8px;
             padding:1px;
             color:#000000 !important;
-          } 
+          }
+          .view_event {
+            display: block;
+            clear: both;
+            text-align: center;
+            margin-bottom: 1px;
+          }
         }
         
         .dayNumber {
@@ -210,6 +233,7 @@ form#event_types {
           clear: both;
           border-right: 1px solid #e3e1e1;
           border-bottom: 1px solid #e3e1e1;
+          margin-bottom: 5px;
           a {
             color: #000;
             text-decoration: none;

@@ -1,18 +1,37 @@
 jQuery(document).ready(function() {
-
+	
 	$(".add_event, .view_event").overlay({
 		// some mask tweaks suitable for modal dialogs
 		mask : {
-			color : '#ebecff',
-			loadSpeed : 200,
-			opacity : 0.9,
-			left : 'center',
-			top : 'center',
-			fixed : true
+			color : '#ebecff'
 		},
-
-		closeOnClick : false
+		loadSpeed: 200,
+		top: '15%',
+		left: 'center',
+		fixed: true,
+		opacity: 0.2,
+		
+		api: true,
+		closeOnClick : false,
+		
+		onBeforeLoad: function() {
+			var time_picker = this.getOverlay().find(".timepicker");
+			var date_picker = this.getOverlay().find(".datepicker");
+			
+			time_picker.timepicker({
+				showCloseButton: true,
+				closeButtonText: 'Done',
+				showDeselectButton: true,
+				deselectButtonText: 'Clear'
+			});
+			
+			date_picker.datepicker({
+				dateFormat: "yy-mm-dd"
+			});
+		}
 	});
+	
+	
 
 	var currentPosition = 0;
 	var slideWidth = 911;
@@ -62,5 +81,4 @@ jQuery(document).ready(function() {
 			$('#rightControl').show()
 		}
 	}
-
 });

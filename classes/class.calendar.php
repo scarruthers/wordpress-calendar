@@ -8,6 +8,7 @@ class Calendar {
 	private $num_months;
 	private $overlay;
 	private $wpdb;
+	private $event_colors;
 
 	public function __construct() {
 		global $wpdb;
@@ -16,6 +17,9 @@ class Calendar {
 
 		$this->setDateData();
 		$this->overlay = new Overlay;
+		
+		$event_types = new Event_Types;
+		$this->event_colors = $event_types->getEventColors();
 	}
 
 	public function returnCalendar() {
@@ -104,9 +108,12 @@ class Calendar {
 			// Display event data
 			$day = "<div class='dayOn'><div class='dayNumber'>" . $current_day . "</div>";
 			foreach($events as $event) {
-				$event = array_map("stripslashes", $event);
-				$event_id = $new_timestamp . "-" . $event->id;
-				$day .= "<div class='overlayContainer colorClassGoesHere'><a class='view_event' rel='#{$event_id}'>{$event->event_title}</a></div><div class='modal' id='{$event_id}'>";
+				foreach($event as &$element) {
+					$element = stripslashes($element);
+				}
+				$color = (array_key_exists($event->event_type, $this->event_colors) ? $this->event_colors[$event->event_type] : "#fff");
+				$event_id = $new_timestamp . "_" . $event->id;
+				$day .= "<div class='overlayContainer colorClassGoesHere'><a class='view_event' rel='#{$event_id}' style='background-color: $color;'>{$event->event_title}</a></div>";
 				
 				// Event Details Overlay
 				if(is_admin()) {
@@ -114,8 +121,6 @@ class Calendar {
 				} else {
 					$day .= $this->overlay->returnNonEditableOverlay($event);
 				}
-
-				$day .= "</div><!--modal-->";
 			}
 			if(is_admin()) {
 				// 'Add Event' Overlay

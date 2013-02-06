@@ -50,13 +50,13 @@ function wpcCreateMenu() {
 	add_menu_page(WPC_DISPLAY_NAME, WPC_DISPLAY_NAME, 'edit_posts', 'wpc-main', 'wpcBackend');
 
 	add_submenu_page('wpc-main', 'Event Type Management', 'Event Types', 'edit_posts', 'wpc-types', 'wpcTypes');
-    add_submenu_page('wpc-main', 'Wordpress Calendar Options', 'Options', 'edit_posts', 'wpc-options', 'wpcOptions');
+    //add_submenu_page('wpc-main', 'Wordpress Calendar Options', 'Options', 'edit_posts', 'wpc-options', 'wpcOptions');
 }
 
 // Manage what stylesheets need to be loaded
 function wpcAddStylesheets($stylesheets) {
 	if(is_admin()) {
-		$stylesheets = array("css/style.css", "css/jqueryui-dark-hive/jquery-ui-1.8.16.custom.css");
+		$stylesheets = array("css/style.css", "css/jqueryui-dark-hive/jquery-ui-1.8.16.custom.css", "css/jquery.ui.timepicker.css");
 	} else {
 		$stylesheets = array("css/style.css");
 	}
@@ -77,16 +77,20 @@ function wpcAddScripts() {
 	wp_deregister_script('jquery');
 
 	// Register scripts
-	wp_register_script('jquery',       WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/jquery-1.9.0.min.js');
-	wp_register_script('jquerymigrate', WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/jquery.migrate.js');
-	wp_register_script('jquerytools',  WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/jquery.tools.custom.min.js');
-    wp_register_script('wpc_calendarjs',  WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/calendar.js');
-	wp_register_script('wpc_eventjs', WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/event_types.js');
+	wp_register_script('jquery',				WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/jquery-1.9.0.min.js');
+	wp_register_script('jquerymigrate',			WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/jquery.migrate.js');
+	wp_register_script('jquerytools',			WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/jquery.tools.custom.min.js');
+	wp_register_script('jqueryui',				WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/jquery-ui-1.10.0.custom.min.js');
+	wp_register_script('jqueryuitimepicker', 	WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/jquery.ui.timepicker.js');
+    wp_register_script('wpc_calendarjs',		WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/calendar.js');
+	wp_register_script('wpc_eventjs',			WP_PLUGIN_URL . '/' . WPC_PLUGIN_NAME . '/jquery/event_types.js');
 
 	// Enqueue the scripts
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('jquerymigrate');
 	wp_enqueue_script('jquerytools');
+	wp_enqueue_script('jqueryui');
+	wp_enqueue_script('jqueryuitimepicker');
 	wp_enqueue_script('wpc_calendarjs');
 	wp_enqueue_script('wpc_eventjs');
 }

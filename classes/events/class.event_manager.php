@@ -34,34 +34,41 @@ class Event_Manager {
 
     public function addEvent() {
         $data = array();
-        $data["cc_date"] = date("Y-m-d", intval($_POST['event_timestamp']));
 
         foreach ($this->fields as $field) {
-            $data[$field] = $_POST[$field];
+        	$temp = $_POST[$field];
+        	if($temp != "0000-00-00") {
+        		$data[$field] = $temp;
+        	} else {
+        		$data[$field] = NULL;
+        	}
         }
 
         if ($this->wpdb->insert(WPC_DB, $data)) {
             $msg = "Event added to the calendar.";
         } else {
-            $msg = "Due to an error, the event was not added.";
+            $msg = "Due to an error, the event was not added:<br />" . $this->wpdb->last_error;
         }
         $this->msg = $msg;
     }
 
     public function editEvent($eventID) {
         $data = array();
-        $data["cc_date"] = date("Y-m-d", intval($_POST['event_timestamp']));
-
         $where = array('id' => $eventID);
 
         foreach ($this->fields as $field) {
-            $data[$field] = $_POST[$field];
+        	$temp = $_POST[$field];
+        	if($temp != "0000-00-00") {
+        		$data[$field] = $temp;
+        	} else {
+        		$data[$field] = NULL;
+        	}
         }
 
         if ($this->wpdb->update(WPC_DB, $data, $where)) {
             $msg = "Changes to the event were made.";
         } else {
-            $msg = "Due to an error, the changes were not made to the event (id: {$eventID}).";
+            $msg = "Due to an error, the changes were not made to the event (id: {$eventID}):<br />" . $this->wpdb->last_error;
         }
 
         $this->msg = $msg;
@@ -73,7 +80,7 @@ class Event_Manager {
         if ($this->wpdb->query($sql)) {
             $msg = "Event deleted succesfully.";
         } else {
-            $msg = "Due to an error, the event (id: {$eventID}) was not deleted.";
+            $msg = "Due to an error, the event (id: {$eventID}) was not deleted:<br />" . $this->wpdb->last_error;
         }
 
         $this->msg = $msg;

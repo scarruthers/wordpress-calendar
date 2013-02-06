@@ -15,6 +15,16 @@ class Event_Types {
 		$this->event_types[] = $event_type;
 	}
 
+	public function getEventColors() {
+		$event_types = $this->getEventTypes();
+		$event_colors = array();
+		foreach($event_types as $event_type) {
+			$event_colors[$event_type->getName()] = $event_type->getColor();
+		}
+		
+		return $event_colors;
+	}
+
     public function getEventTypes() {
         if (!is_null($this->event_types)) {
             return $this->event_types;
@@ -22,6 +32,7 @@ class Event_Types {
 
         $event_types = get_option('wpc_event_types');
         $event_types = explode(";;;", $event_types);
+		
         foreach($event_types as $index => $event_type) {
         	$event_types[$index] = new Event_Type($event_type);
             // = array(event name, event type, event description, event color);
@@ -33,7 +44,6 @@ class Event_Types {
 
 	public function setEventTypes() {
 		$option_data = array();
-		echo "<pre>";var_dump($this->event_types);echo "</pre>";
 		foreach($this->event_types as $event_type) {
 			$option_data[] = $event_type->renderJSON();
 		}
@@ -49,7 +59,7 @@ class Event_Types {
         $select = "<select name='{$select_name}' id='{$select_id}'>";
         foreach ($this->getEventTypes() as $index => $event_type) {
         	$name = $event_type->getName();
-            $select .= "<option value='{$name}' " . ($name == $active_event_type ? "checked" : "") . ">{$name}";
+            $select .= "<option value='{$name}' " . ($name == $active_event_type ? "selected" : "") . ">{$name}";
         }
         $select .= "</select>";
 
